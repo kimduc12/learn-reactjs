@@ -1,0 +1,9 @@
+.todo-list {
+    li {
+        cursor: pointer;
+
+        &.active {
+            color: blue;
+        }
+    }
+}
