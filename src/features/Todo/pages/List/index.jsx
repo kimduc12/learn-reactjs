@@ -1,23 +1,11 @@
 import { Button } from '@material-ui/core';
 import queryString from 'query-string';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
-import categoryApi from '../../../../api/categoryApi';
 import TodoForm from '../../components/Form';
 import List from '../../components/List/index';
 
 function TodoListPage(props) {
-    useEffect(() => {
-        const getCategories = async () => {
-            const params = {
-                _limit: 10,
-            };
-            const categories = await categoryApi.getAll(params);
-            //console.log(categories);
-        };
-        getCategories();
-    }, []);
-
     const initList = [
         {
             id: 1,

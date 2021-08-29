@@ -118,7 +118,7 @@ export default function Header() {
                     <Close />
                 </IconButton>
                 <DialogContent>
-                    {mode == MODE.REGISTER && (
+                    {mode === MODE.REGISTER && (
                         <>
                             <Register closeDialog={handleClose} />
                             <Box textAlign="center">
@@ -128,7 +128,7 @@ export default function Header() {
                             </Box>
                         </>
                     )}
-                    {mode == MODE.LOGIN && (
+                    {mode === MODE.LOGIN && (
                         <>
                             <Login closeDialog={handleClose} />
                             <Box textAlign="center">
