@@ -20,10 +20,17 @@ function ProductItem(props) {
             <Box padding={1}>
                 <img src={thumbnail} alt={product.name} width="100%" />
             </Box>
-            <Typography variant="body2">{product.name}</Typography>
-            <Typography variant="body2">
-                {product.salePrice} - {product.promotionPercent}
-            </Typography>
+            <Box padding={1}>
+                <Typography variant="body2">{product.name}</Typography>
+                <Typography variant="body2">
+                    <Box component="span" fontSize={16} fontWeight="bold" mr={1}>
+                        {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+                            product.salePrice
+                        )}
+                    </Box>
+                    {product.promotionPercent > 0 ? ` -${product.promotionPercent}%` : ''}
+                </Typography>
+            </Box>
         </Box>
     );
 }
