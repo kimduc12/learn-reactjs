@@ -13,6 +13,16 @@ const useStyles = makeStyles((theme) => ({
     right: {
         flex: '1 1 0',
     },
+    rightPager: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+    },
+    pagination: {
+        display: 'flex',
+        flexFlow: 'grow nowrap',
+        justifyContent: 'center',
+        marginTop: theme.spacing(2),
+    },
 }));
 function ListPage(props) {
     const classes = useStyles();
@@ -29,6 +39,7 @@ function ListPage(props) {
     });
     useEffect(() => {
         (async () => {
+            setLoading(true);
             try {
                 const result = await productApi.getAll(filters);
                 console.log('product', result);
@@ -56,15 +67,17 @@ function ListPage(props) {
                     <Paper elevation={0}>Left</Paper>
                 </Grid>
                 <Grid item className={classes.right}>
-                    <Paper elevation={0}>
+                    <Paper className={classes.rightPager} elevation={0}>
                         {loading && <ProductSkeletonList length={12} />}
                         {!loading && <ProductList data={productList} />}
-                        <Pagination
-                            onChange={handlePageChange}
-                            color="primary"
-                            count={Math.ceil(pagination.total / pagination.limit)}
-                            page={pagination.page}
-                        ></Pagination>
+                        <Box className={classes.pagination}>
+                            <Pagination
+                                onChange={handlePageChange}
+                                color="primary"
+                                count={Math.ceil(pagination.total / pagination.limit)}
+                                page={pagination.page}
+                            ></Pagination>
+                        </Box>
                     </Paper>
                 </Grid>
             </Grid>
