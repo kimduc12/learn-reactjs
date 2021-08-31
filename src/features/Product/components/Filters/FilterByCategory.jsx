@@ -8,12 +8,20 @@ FilterByCategory.propTypes = {
 };
 
 const useStyles = makeStyles((theme) => ({
-    root: {},
+    root: {
+        padding: theme.spacing(2),
+    },
     ul: {
-        paddingLeft: 0,
+        padding: 0,
+        margin: 0,
     },
     li: {
         listStyle: 'none',
+        marginTop: theme.spacing(1),
+        '&:hover': {
+            color: theme.palette.primary.main,
+            cursor: 'pointer',
+        },
     },
 }));
 
@@ -40,11 +48,11 @@ function FilterByCategory(props) {
 
     return (
         <Box padding={1}>
-            <Typography>Danh mục</Typography>
+            <Typography variant="subtitle2">DANH MỤC SẢN PHẨM</Typography>
             <ul className={classes.ul}>
                 {categoryList.map((category) => (
                     <li className={classes.li} key={category.id} onClick={() => handleCategoryClick(category)}>
-                        {category.name}
+                        <Typography variant="body2">{category.name}</Typography>
                     </li>
                 ))}
             </ul>

@@ -18,10 +18,15 @@ function ProductFilters(props) {
         };
         onChange(newFilters);
     };
+
+    const handlePriceChange = (values) => {
+        if (!onChange) return;
+        onChange(values);
+    };
     return (
         <div>
             <FilterByCategory onChange={handleCategoryChange} />
-            <FilterByPrice />
+            <FilterByPrice onChange={handlePriceChange} />
         </div>
     );
 }
