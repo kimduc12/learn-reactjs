@@ -1,4 +1,5 @@
 import { Box, Grid, makeStyles, Paper } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import productApi from 'api/productApi';
 import React, { useEffect, useState } from 'react';
 import ProductList from '../components/ProductList.jsx';
@@ -16,12 +17,22 @@ const useStyles = makeStyles((theme) => ({
 function ListPage(props) {
     const classes = useStyles();
     const [productList, setProductList] = useState([]);
+    const [pagination, setPagination] = useState({
+        page: 0,
+        limit: 12,
+        total: 0,
+    });
     const [loading, setLoading] = useState(true);
+    const [filters, setFilters] = useState({
+        _page: 1,
+        _limit: 12,
+    });
     useEffect(() => {
         (async () => {
             try {
-                const result = await productApi.getAll({ _page: 1, _limit: 10 });
+                const result = await productApi.getAll(filters);
                 console.log('product', result);
+                setPagination(result.pagination);
                 setProductList(result.data);
             } catch (error) {
                 console.log('product Api getAll error', error);
@@ -29,7 +40,15 @@ function ListPage(props) {
 
             setLoading(false);
         })();
-    }, []);
+    }, [filters]);
+
+    const handlePageChange = (e, page) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            _page: page,
+        }));
+    };
+
     return (
         <Box className={classes.root}>
             <Grid container spacing={1}>
@@ -40,6 +59,12 @@ function ListPage(props) {
                     <Paper elevation={0}>
                         {loading && <ProductSkeletonList length={12} />}
                         {!loading && <ProductList data={productList} />}
+                        <Pagination
+                            onChange={handlePageChange}
+                            color="primary"
+                            count={Math.ceil(pagination.total / pagination.limit)}
+                            page={pagination.page}
+                        ></Pagination>
                     </Paper>
                 </Grid>
             </Grid>
