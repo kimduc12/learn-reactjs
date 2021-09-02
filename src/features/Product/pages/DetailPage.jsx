@@ -2,7 +2,9 @@ import { Box, Grid, makeStyles, Paper } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import AddToCartForm from '../components/AddToCartForm';
 import ProductInfo from '../components/ProductInfo';
+import ProductMenu from '../components/ProductMenu';
 import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
 
@@ -25,6 +27,10 @@ function DetailPage() {
     const { productId } = match.params;
     const { product, loading } = useProductDetail(productId);
 
+    const handleAddToCartSubmit = (values) => {
+        console.log('handleAddToCartSubmit', values);
+    };
+
     return (
         <Box className={classes.root}>
             <Paper elevation={0}>
@@ -41,9 +47,11 @@ function DetailPage() {
                             </>
                         )}
                         {!loading && <ProductInfo product={product} />}
+                        {!loading && <AddToCartForm onSubmit={handleAddToCartSubmit} />}
                     </Grid>
                 </Grid>
             </Paper>
+            <ProductMenu />
         </Box>
     );
 }
