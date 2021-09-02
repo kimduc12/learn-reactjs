@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 0,
         margin: 0,
         '& > li': {
-            listType: 'none',
+            listStyle: 'none',
             margin: 0,
             marginTop: theme.spacing(1),
         },
