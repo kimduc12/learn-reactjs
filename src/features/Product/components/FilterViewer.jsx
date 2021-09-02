@@ -77,6 +77,7 @@ const FILTER_LIST = [
         onRemove: (filters) => {
             const newFilters = { ...filters };
             delete newFilters['category.id'];
+            delete newFilters['category.name'];
             return newFilters;
         },
         onToggle: () => {},
