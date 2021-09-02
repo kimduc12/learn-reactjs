@@ -69,10 +69,6 @@ function ListPage(props) {
     }, [queryParams]);
 
     const handlePageChange = (e, page) => {
-        // setFilters((prevFilters) => ({
-        //     ...prevFilters,
-        //     _page: page,
-        // }));
         const filters = {
             ...queryParams,
             _page: page,
@@ -84,10 +80,6 @@ function ListPage(props) {
     };
 
     const handleSortChange = (value) => {
-        // setFilters((prevFilters) => ({
-        //     ...prevFilters,
-        //     _sort: value,
-        // }));
         const filters = {
             ...queryParams,
             _sort: value,
@@ -99,10 +91,6 @@ function ListPage(props) {
     };
 
     const handleFiltersChange = (newFilters) => {
-        // setFilters((prevFilters) => ({
-        //     ...prevFilters,
-        //     ...newFilters,
-        // }));
         const filters = {
             ...queryParams,
             ...newFilters,
@@ -114,7 +102,6 @@ function ListPage(props) {
     };
 
     const handleFilterViewerChange = (newFilters) => {
-        // setFilters(newFilters);
         history.push({
             pathname: history.pathname,
             search: queryString.stringify(newFilters),
