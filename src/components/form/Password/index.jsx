@@ -19,7 +19,8 @@ PasswordField.propTypes = {
 
 function PasswordField(props) {
     const { form, name, label, disabled } = props;
-    const { errors } = form;
+    const { formState } = form;
+    const { errors } = formState;
     const hasError = errors[name];
     const [showPassword, setShowPassword] = useState(false);
     const toggleShowPassword = () => {
@@ -31,18 +32,29 @@ function PasswordField(props) {
             <Controller
                 name={name}
                 control={form.control}
-                disabled={disabled}
-                as={OutlinedInput}
-                id={name}
-                type={showPassword ? 'text' : 'password'}
-                endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton aria-label="toggle password visibility" onClick={toggleShowPassword} edge="end">
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                }
-                labelWidth={70}
+                render={({ field: { onChange, onBlur, value } }) => (
+                    <OutlinedInput
+                        name={name}
+                        id={name}
+                        type={showPassword ? 'text' : 'password'}
+                        disabled={disabled}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={toggleShowPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        labelWidth={70}
+                        onBlur={onBlur}
+                        onChange={onChange}
+                        value={value}
+                    />
+                )}
             />
             {!!hasError && <FormHelperText>{errors[name]?.message}</FormHelperText>}
         </FormControl>
