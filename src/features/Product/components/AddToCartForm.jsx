@@ -28,9 +28,9 @@ function AddToCartForm(props) {
         resolver: yupResolver(schema),
     });
 
-    const handleSubmit = async (values) => {
+    const handleSubmit = (values) => {
         if (onSubmit) {
-            await onSubmit(values);
+            onSubmit(values);
         }
     };
 

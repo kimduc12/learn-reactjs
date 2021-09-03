@@ -1,12 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, Link, makeStyles } from '@material-ui/core';
+import React from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: 0,
-        marginTop: theme.spacing(4),
+        margin: theme.spacing(5, 0),
         padding: 0,
         listStyleType: 'none',
         display: 'flex',

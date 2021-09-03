@@ -2,6 +2,7 @@ import { Container } from '@material-ui/core';
 import Header from 'components/Header';
 import NotFound from 'components/NotFound';
 import Album from 'features/Album';
+import CartFeature from 'features/Cart';
 import Counter from 'features/Counter';
 import Product from 'features/Product';
 import Todo from 'features/Todo';
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/todo" component={Todo} exact />
                     <Route path="/album" component={Album} exact />
                     <Route path="/products" component={Product} />
+                    <Route path="/carts" component={CartFeature} />
                     <Route component={NotFound} />
                 </Switch>
             </Container>
